@@ -1,0 +1,20 @@
+<div class="rounded-md flex flex-col justify-center items-center border-2 border-white relative"
+  *ngIf="timerIsVisible;else timerIsHiddenBlock">
+
+  <p class="text-white text-4xl flex h-7">{{  timer.hours }}h {{  timer.minutes }}m {{ timer.seconds}}s</p>
+  <app-user-timer-dialog-end class="absolute right-0 m-3" (endShiftEvent)="stopTracker($event)">
+  </app-user-timer-dialog-end>
+
+</div>
+
+
+<ng-template #timerIsHiddenBlock>
+  <div class="rounded-md flex justify-around items-center">
+
+    <button mat-fab extended color="accent" (click)="startTracker()">
+      <mat-icon>timer</mat-icon>
+      Start
+    </button>
+    <ng-content></ng-content>
+  </div>
+</ng-template>

@@ -1,0 +1,56 @@
+<div class="flex flex-col items-center sm:items-start sm:justify-center sm:flex-row gap-10 w-full h-max">
+
+
+  <div class="w-max flex flex-col justify-center items-center gap-3">
+    <div class="h-44 w-44 overflow-hidden rounded-lg shadow-2xl border-white border-2">
+      <img src="assets/images/avatar-default.png" alt="avatar" class="w-100 h-100">
+    </div>
+
+    <div class="flex flex-col justify-start items-center">
+      <p class="text-white text-lg font-bold h-5">Van Henry Salido</p>
+      <p class="text-white">Technical</p>
+    </div>
+  </div>
+
+
+
+  <div class="w-max flex flex-col justify-center items-center gap-3">
+      <mat-expansion-panel #overview hideToggle class="text-primary">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="w-64 text-primary">
+            Overview
+          </mat-panel-title>
+          <mat-panel-description class="text-primary justify-end">
+            ///
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <p class="border-t pt-2">This is the primary content of the panel.</p> -->
+        <table class="border-t pt-5 w-full">
+          <tbody>
+            <tr>
+              <td class="font-bold text-xs">Last Logged</td>
+              <td class="text-xs">Yesterday</td>
+            </tr>
+            <tr>
+              <td class="font-bold text-xs">Total Hours Rendered</td>
+              <td class="text-xs">2332 hrs</td>
+            </tr>
+            <tr>
+              <td class="font-bold text-xs">Date Joined</td>
+              <td class="text-xs">June 21, 2023</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-expansion-panel>
+
+      <app-user-timer class="h-20 w-full">
+        <button mat-mini-fab [className]="'text-white flex items-center'">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </app-user-timer>
+
+
+  </div>
+
+</div>
