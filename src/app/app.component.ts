@@ -32,9 +32,9 @@ export class AppComponent {
 
   @ViewChild('drawer') drawer:any;
 
-  ngAfterViewInit(){
-    this.drawer.open()
-  }
+  // ngAfterViewInit(){
+  //   this.drawer.open()
+  // }
 }
 
 

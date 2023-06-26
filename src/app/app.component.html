@@ -24,12 +24,15 @@
     <mat-drawer #drawer class="w-64 bg-white shadow-xl z-10" mode="side">
     </mat-drawer>
 
-    <div class="w-full h-full z-0">
-      <router-outlet></router-outlet>
-      <!-- <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
+    <div class="w-full h-full z-0 relative">
+      <button (click)="drawer.toggle()" class="absolute left-0 hover:bg-gray-500 hover:rounded-lg hover:bg-opacity-20 flex items-center">
+        <mat-icon *ngIf="drawer.opened else expandButton">chevron_left</mat-icon>
+        <ng-template #expandButton>
+          <mat-icon >chevron_right</mat-icon>
+        </ng-template>
       </button>
-      hello -->
+
+      <router-outlet></router-outlet>
     </div>
 
   </mat-drawer-container>
