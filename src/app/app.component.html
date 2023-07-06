@@ -1,43 +1,58 @@
-<div class="flex flex-col">
-  <div class="h-11 w-full bg-primary shadow-xl z-10 flex justify-between px-5 items-center">
-    <div>Logo</div>
-    <div class="">
-      <button class="text-white" (click)="viewProfile = !viewProfile;">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-
-
-  </div>
-  <div class="h-max w-full bg-primary flex justify-start items-center p-3">
-
-    <app-user-info *ngIf="viewProfile else miniMenu" class="w-full"></app-user-info>
-
-    <ng-template #miniMenu>
-      <app-title-menu-board class="w-full" (avatarClickedEvent)="viewProfile = !viewProfile;"></app-title-menu-board>
-    </ng-template>
-
-  </div>
-
-  <mat-drawer-container class="h-screen bg-blue-50" autosize>
-
-    <mat-drawer #drawer class="w-64 bg-white shadow-xl z-10" mode="side">
-    </mat-drawer>
-
-    <div class="w-full h-full z-0 relative">
-      <button (click)="drawer.toggle()" class="absolute left-0 hover:bg-gray-500 hover:rounded-lg hover:bg-opacity-20 flex items-center">
-        <mat-icon *ngIf="drawer.opened else expandButton">chevron_left</mat-icon>
-        <ng-template #expandButton>
-          <mat-icon >chevron_right</mat-icon>
-        </ng-template>
-      </button>
-
-      <router-outlet></router-outlet>
-    </div>
-
-  </mat-drawer-container>
-
+<div *ngIf="!authenticated else authenticatedTemplate" class="w-full h-full flex justify-center items-center bg-gray-100">
+  <app-login *ngIf="usersMode==='login' else registration" (switchEvent)="usersMode='registration'"></app-login>
+  <ng-template #registration>
+    <app-register (switchEvent)="usersMode='login'"></app-register>
+  </ng-template>
 </div>
 
+<ng-template #authenticatedTemplate>
+  <div class="flex flex-col">
+    <div class="h-11 w-full bg-primary shadow-xl z-10 flex justify-between px-5 items-center">
+      <div><p class="text-white text-3xl font-bold">LOG<span class="text-accent">O</span></p></div>
+      <div>
+        <button class="text-white" *ngIf="viewProfile else avatarIcon" (click)="viewProfile = false;">
+          <mat-icon>minimize</mat-icon>
+        </button>
+        <ng-template #avatarIcon>
+          <div class="overflow-hidden w-8 h-8 border-2 border-white cursor-pointer rounded-sm" (click)="viewProfile = true;">
+            <img [src]="userData.avatarURL" alt="" class="object-contain">
+          </div>
+        </ng-template>
+      </div>
+
+
+    </div>
+    <div class="h-max w-full bg-primary flex justify-start items-center p-3">
+      <app-user-info *ngIf="viewProfile else miniMenu" class="w-full"></app-user-info>
+
+      <ng-template #miniMenu>
+        <app-title-menu-board
+          [pageTitle]="pageTitle"
+          class="w-full" (avatarClickedEvent)="viewProfile = !viewProfile;">
+        </app-title-menu-board>
+      </ng-template>
+
+    </div>
+
+    <mat-drawer-container class="h-screen bg-blue-50" autosize>
+
+      <mat-drawer #drawer class="w-64 bg-white shadow-xl z-10" mode="side">
+        <app-nav-links-list></app-nav-links-list>
+      </mat-drawer>
+
+      <div class="w-full h-full z-0 relative">
+        <button (click)="drawer.toggle()" class="absolute left-0 hover:bg-gray-500 hover:rounded-lg hover:bg-opacity-20 flex items-center">
+          <mat-icon *ngIf="drawer.opened else expandButton">chevron_left</mat-icon>
+          <ng-template #expandButton>
+            <mat-icon >chevron_right</mat-icon>
+          </ng-template>
+        </button>
+
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-drawer-container>
+  </div>
+</ng-template>
 
 

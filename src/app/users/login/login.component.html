@@ -1,0 +1,31 @@
+<div class="w-screen sm:w-96 h-max shadow-xl bg-white">
+  <p class="w-full text-center bg-primary text-white font-bold text-2xl h-12 flex items-center justify-center">Login</p>
+  <div class="h-full w-full py-3 px-6">
+    <mat-form-field class="w-full">
+      <mat-label>
+        Username
+      </mat-label>
+      <input type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>
+        Password
+      </mat-label>
+      <input type="password" matInput>
+    </mat-form-field>
+
+  </div>
+
+  <div class="px-6 py-5 flex justify-between">
+    <button mat-flat-button color="basic" (click)="toRegistrationMode()">
+      Register
+    </button>
+
+    <button mat-raised-button color="primary">
+      Login
+    </button>
+  </div>
+
+
+</div>

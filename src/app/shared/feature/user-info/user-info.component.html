@@ -7,8 +7,8 @@
     </div>
 
     <div class="flex flex-col justify-start items-center">
-      <p class="text-white text-lg font-bold h-5">Van Henry Salido</p>
-      <p class="text-white">Technical</p>
+      <p class="text-white text-lg font-bold h-5">{{ userData.fullName }} <span class="text-sm">({{ userData.username }})</span></p>
+      <p class="text-white">{{ userData.jobTitle }}</p>
     </div>
   </div>
 
@@ -29,11 +29,11 @@
           <tbody>
             <tr>
               <td class="font-bold text-xs">Last Logged</td>
-              <td class="text-xs">Yesterday</td>
+              <td class="text-xs">{{userData.lastShiftIn}}</td>
             </tr>
             <tr>
               <td class="font-bold text-xs">Total Hours Rendered</td>
-              <td class="text-xs">2332 hrs</td>
+              <td class="text-xs">{{ userData.totalHoursRendered }} hrs</td>
             </tr>
             <tr>
               <td class="font-bold text-xs">Date Joined</td>

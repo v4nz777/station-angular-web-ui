@@ -13,7 +13,6 @@ import { ShiftTrackerService } from 'src/app/shared/data-access/shift-tracker.se
     CommonModule,
     MatIconModule,
     MatButtonModule,
-
     UserTimerDialogEndComponent
 
   ],
@@ -21,8 +20,6 @@ import { ShiftTrackerService } from 'src/app/shared/data-access/shift-tracker.se
   styleUrls: ['./user-timer.component.css'],
   providers: [ShiftTrackerService, DatePipe]
 })
-
-
 
 
 export class UserTimerComponent {
