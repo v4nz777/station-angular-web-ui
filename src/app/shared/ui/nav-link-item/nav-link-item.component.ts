@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-nav-link-item',
@@ -9,17 +11,21 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   templateUrl: './nav-link-item.component.html',
   styleUrls: ['./nav-link-item.component.css']
 })
 export class NavLinkItemComponent {
-  @Input() linkItem = {
+
+
+  @Input() linkItem:NavLinkItem = {
     linkTitle:"Link Title",
     matIcon: "pets",
-    routerLink:"#"
+    routerLink:"/"
   }
+
 }
 
 export interface NavLinkItem {

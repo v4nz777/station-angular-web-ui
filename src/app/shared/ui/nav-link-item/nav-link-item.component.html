@@ -1,5 +1,7 @@
-<div class="flex items-center px-3 my-1 text-primary cursor-pointer hover:bg-accent hover:text-white hover:shadow-md mx-2">
+<a class="flex items-center px-3 my-1 text-primary hover:shadow-md mx-2"
+[routerLink]="linkItem.routerLink" routerLinkActive="bg-accent text-white shadow-md" [routerLinkActiveOptions]="{exact:true}">
+
   <mat-icon>{{linkItem.matIcon}}</mat-icon>
   <span>{{ linkItem.linkTitle }} </span>
-</div>
+</a>
 
