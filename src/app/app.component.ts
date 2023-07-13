@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -40,8 +40,12 @@ export class AppComponent {
   userData = this.userDataService.getUserData();
   pageTitle = `Welcome ${this.userData.fullName}`
   viewProfile = false;
-  authenticated = false;
+  authenticated = true;
   usersMode = "login"
+
+  ngOnInit(){
+    if(window.location.pathname == "/")this.viewProfile = true
+  }
 
 
 }

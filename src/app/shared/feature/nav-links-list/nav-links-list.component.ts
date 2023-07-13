@@ -15,8 +15,6 @@ import { NavLinkItemComponent, NavLinkItem } from '../../ui/nav-link-item/nav-li
 })
 export class NavLinksListComponent {
   links:NavLinkItem[] = [
-    { linkTitle:"One", matIcon:"pets" , routerLink:"#" },
-    { linkTitle:"Two", matIcon:"home" , routerLink:"#" },
-    { linkTitle:"Three", matIcon:"home" , routerLink:"#" },
+    { linkTitle:"Home", matIcon:"home" , routerLink:"/" },
   ]
 }
