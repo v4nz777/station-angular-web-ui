@@ -1,19 +1,21 @@
-<div class="w-screen sm:w-96 h-max shadow-xl bg-white">
+<form class="w-screen sm:w-96 h-max shadow-xl bg-white rounded-lg overflow-hidden" [formGroup]="loginUserControlGroup" (ngSubmit)="onSubmit()">
   <p class="w-full text-center bg-primary text-white font-bold text-2xl h-12 flex items-center justify-center">Login</p>
   <div class="h-full w-full py-3 px-6">
     <mat-form-field class="w-full">
       <mat-label>
         Username
       </mat-label>
-      <input type="text" matInput>
+      <input type="text" matInput formControlName="userName">
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         Password
       </mat-label>
-      <input type="password" matInput>
+      <input type="password" matInput formControlName="password">
     </mat-form-field>
+
+    <mat-error *ngIf="isErrorState">Invalid credentials, Try Again.</mat-error>
 
   </div>
 
@@ -22,10 +24,10 @@
       Register
     </button>
 
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" [disabled]="!loginUserControlGroup.valid">
       Login
     </button>
   </div>
 
 
-</div>
+</form>

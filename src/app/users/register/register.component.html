@@ -1,55 +1,76 @@
-<div class="w-screen sm:w-96 h-max shadow bg-white">
+<form class="w-screen sm:w-96 h-max shadow bg-white rounded-lg overflow-hidden" [formGroup]="registrationFormControlGroup" (ngSubmit)="onSubmit()">
   <p class="w-full text-center bg-primary text-white font-bold text-2xl h-12 flex items-center justify-center">Create Account</p>
-  <div class="h-full w-full py-3 px-6">
+  <div class="h-full w-full py-3 px-6 flex flex-col gap-3">
     <mat-form-field class="w-full">
       <mat-label>
         Username
       </mat-label>
-      <input type="text" matInput>
+      <input type="text" matInput formControlName="username" [errorStateMatcher]="usernameMatcher">
+      <mat-error *ngIf="registrationFormControlGroup.controls['username'].hasError('required')">This is a required field!</mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         Password
       </mat-label>
-      <input type="password" matInput>
+      <input type="password" matInput formControlName="password">
+      <mat-error *ngIf="registrationFormControlGroup.controls['password'].hasError('required')">This is a required field!</mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         Confirm Password
       </mat-label>
-      <input type="password" matInput [errorStateMatcher]="passwordMatcher" [formControl]="registrationFormControl">
-      <mat-error *ngIf="!registrationFormControl.hasError('required')">Error</mat-error>
+      <input type="password" matInput formControlName="confirmPassword" [errorStateMatcher]="passwordMatcher">
+      <mat-error *ngIf="registrationFormControlGroup.controls['confirmPassword'].hasError('required')">This is a required field!</mat-error>
+      <mat-error *ngIf="passwordMatcher.isErrorState">Password not matched</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>
+        Full Name
+      </mat-label>
+      <input type="text" matInput formControlName="fullName">
+      <mat-error *ngIf="registrationFormControlGroup.controls['fullName'].hasError('required')">This is a required field!</mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         Email
       </mat-label>
-      <input type="email" matInput>
+      <input type="email" matInput formControlName="email">
+      <mat-error *ngIf="registrationFormControlGroup.controls['email'].hasError('required')">This is a required field!</mat-error>
+      <mat-error *ngIf="registrationFormControlGroup.controls['email'].hasError('email') && !registrationFormControlGroup.controls['email'].hasError('required')">
+        Invalid Email
+      </mat-error>
+
+
+
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         Birth Date
       </mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input matInput formControlName="birthDate" [matDatepicker]="picker">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="registrationFormControlGroup.controls['birthDate'].hasError('required')">This is a required field!</mat-error>
+
     </mat-form-field>
   </div>
 
   <div class="px-6 py-5 flex justify-between">
+
     <button mat-flat-button color="basic" (click)="toLoginMode()">
       Login
     </button>
 
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationFormControlGroup.valid">
       Register
     </button>
+
   </div>
-
-
-</div>
+</form>
