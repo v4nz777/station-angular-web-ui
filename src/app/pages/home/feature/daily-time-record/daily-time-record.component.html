@@ -50,22 +50,22 @@
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
-    <ng-container matColumnDef="totalHours">
+    <ng-container matColumnDef="renderedHours">
       <th mat-header-cell *matHeaderCellDef> Hours </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalHours}} </td>
-      <td mat-footer-cell *matFooterCellDef> <strong class="text-primary">{{'122'}}</strong> </td>
+      <td mat-cell *matCellDef="let element"> {{element.renderedHours}} </td>
+      <td mat-footer-cell *matFooterCellDef> <strong class="text-primary">{{totals.totalHours}}</strong> </td>
     </ng-container>
 
-    <ng-container matColumnDef="totalOvertime">
+    <ng-container matColumnDef="renderedOvertime">
       <th mat-header-cell *matHeaderCellDef> Overtime </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalOvertime}} </td>
-      <td mat-footer-cell *matFooterCellDef> <strong class="text-primary">{{'122'}}</strong> </td>
+      <td mat-cell *matCellDef="let element"> {{element.renderedOvertime}} </td>
+      <td mat-footer-cell *matFooterCellDef> <strong class="text-primary">{{totals.totalOvertimes}}</strong> </td>
     </ng-container>
 
-    <ng-container matColumnDef="totalNightShift">
+    <ng-container matColumnDef="renderedNightShift">
       <th mat-header-cell *matHeaderCellDef> Night shift </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalNightShift}} </td>
-      <td mat-footer-cell *matFooterCellDef> <strong class="text-primary">{{'122'}}</strong> </td>
+      <td mat-cell *matCellDef="let element"> {{element.renderedNightShift}} </td>
+      <td mat-footer-cell *matFooterCellDef> <strong class="text-primary">{{totals.totalNightShifts}}</strong> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="headers"></tr>

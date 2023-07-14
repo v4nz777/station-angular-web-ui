@@ -35,7 +35,12 @@ export class DailyTimeRecordComponent {
 
   isLoadingResults:boolean = false;
   dataSource: DailyTimeRecord[] = []
-  headers: string[] = ['date','started', 'ended', 'totalHours', 'totalOvertime', 'totalNightShift']
+  totals:ITotals = {
+    totalHours: 0,
+    totalOvertimes: 0,
+    totalNightShifts: 0,
+  }
+  headers: string[] = ['date','started', 'ended', 'renderedHours', 'renderedOvertime', 'renderedNightShift']
   range = new FormGroup({
     starts: new FormControl<Date | null> (null),
     ends: new FormControl<Date | null> (null)
@@ -77,10 +82,28 @@ export class DailyTimeRecordComponent {
       setTimeout(async () => {
         this.dataSource = await this.dtrService.getDailyTimeRecords({ starts, ends })
         this.isLoadingResults = false;
+        this.setTotals()
       }, 3000);
-
-
     }
   }
 
+  setTotals():void {
+    if(this.dataSource){
+      this.totals.totalHours = 0;
+      this.totals.totalOvertimes = 0;
+      this.totals.totalNightShifts = 0;
+      this.dataSource.map(data=>{
+        this.totals.totalHours = (this.totals.totalHours??0) + (data.renderedHours??0)
+        this.totals.totalOvertimes = (this.totals.totalOvertimes??0) + (data.renderedOvertime??0)
+        this.totals.totalNightShifts = (this.totals.totalNightShifts??0) + (data.renderedNightShift??0)
+      })
+    }
+  }
+}
+
+
+export interface ITotals{
+  totalHours:number|null;
+  totalOvertimes:number|null;
+  totalNightShifts:number|null;
 }
